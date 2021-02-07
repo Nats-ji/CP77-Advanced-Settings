@@ -18,7 +18,7 @@
 5. Press <kbd>Default</kbd> to reset to default.
 
 ## Disclaimer
-Some(most) of the settings have unknown effects to the game, and may or may not crash your game.
+Some(most) of the settings have unknown effects on the game, and may or may not crash your game.
 Please proceed at your own risk.
 
 If the settings you changed have resulted in a crash, please remove the `user_options.json` inside `Cyberpunk 2077\bin\x64\plugins\cyber_engine_tweaks\mods\advanced_settings\` and restart your game.
