@@ -36,7 +36,7 @@ function UISystem.DrawOptions(ConfigSystem)
         end
         ImGui.PushID(pk..i)
         if (ConfigSystem.options[pk][k].type == "bool") then
-          ConfigSystem.options[pk][k].value, ConfigSystem.options[pk][k].used = CPS.CPToggle(label, "On", "Off", ConfigSystem.options[pk][k].value, 150, 0)
+          ConfigSystem.options[pk][k].value, ConfigSystem.options[pk][k].used = CPS.CPToggle(label, "Off", "On", ConfigSystem.options[pk][k].value, 150, 0)
         elseif (ConfigSystem.options[pk][k].type == "float") then
           ConfigSystem.options[pk][k].value, ConfigSystem.options[pk][k].used = ImGui.InputFloat(label, ConfigSystem.options[pk][k].value, 0.1, 2, "%.3f")
         elseif (ConfigSystem.options[pk][k].type == "integer") then
