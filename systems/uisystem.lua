@@ -25,14 +25,9 @@ function UISystem.DrawOptions(ConfigSystem)
   for _, pk in ipairs(ConfigSystem.keys.parent) do
     if ImGui.CollapsingHeader(pk) then
       for i, k in ipairs(ConfigSystem.keys.child[pk]) do
-        local label
+        local label = k:gsub("_","/")
         if ConfigSystem.options[pk][k].unsaved then
           CPS.colorBegin("Text", color.yellow)
-        end
-        if ConfigSystem.options[pk][k].value ~= ConfigSystem.options[pk][k].def_value then
-          label = "*"..k:gsub("_","/")
-        else
-          label = k:gsub("_","/")
         end
         ImGui.PushID(pk..i)
         if (ConfigSystem.options[pk][k].type == "bool") then
