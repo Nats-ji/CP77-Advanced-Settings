@@ -3,3 +3,4 @@ user_options.json
 init.lua_disabled
 advanced_settings*.log
 /data/game_options.xlsx
+.github
