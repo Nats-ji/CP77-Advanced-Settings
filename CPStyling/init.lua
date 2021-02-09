@@ -145,11 +145,16 @@ function CPStyle.setThemeBegin()
 	-- CPStyle.colorBegin("PlotLinesHovered"               , CPStyle.theme.PlotLinesHovered)
 	-- CPStyle.colorBegin("PlotHistogram"                  , CPStyle.theme.PlotHistogram)
 	-- CPStyle.colorBegin("PlotHistogramHovered"           , CPStyle.theme.PlotHistogramHovered)
+	-- CPStyle.colorBegin("TableHeaderBg"                  , CPStyle.theme.TableHeaderBg)
+	-- CPStyle.colorBegin("TableBorderStrong"              , CPStyle.theme.TableBorderStrong)
+	-- CPStyle.colorBegin("TableBorderLight"               , CPStyle.theme.TableBorderLight)
+	-- CPStyle.colorBegin("TableRowBg"                     , CPStyle.theme.TableRowBg)
+	-- CPStyle.colorBegin("TableRowBgAlt"                  , CPStyle.theme.TableRowBgAlt)
 	CPStyle.colorBegin("TextSelectedBg"                 , CPStyle.theme.TextSelectedBg)
 	-- CPStyle.colorBegin("DragDropTarget"                 , CPStyle.theme.DragDropTarget)
-	-- CPStyle.colorBegin("NavHighlight"                   , CPStyle.theme.NavHighlight)
-	-- CPStyle.colorBegin("NavWindowingHighlight"          , CPStyle.theme.NavWindowingHighlight)
-	-- CPStyle.colorBegin("NavWindowingDimBg"              , CPStyle.theme.NavWindowingDimBg)
+	CPStyle.colorBegin("NavHighlight"                   , CPStyle.theme.NavHighlight)
+	CPStyle.colorBegin("NavWindowingHighlight"          , CPStyle.theme.NavWindowingHighlight)
+	CPStyle.colorBegin("NavWindowingDimBg"              , CPStyle.theme.NavWindowingDimBg)
 	CPStyle.colorBegin("ModalWindowDimBg"               , CPStyle.theme.ModalWindowDimBg)
   CPStyle.styleBegin("WindowRounding"                 , 0)
 	CPStyle.styleBegin("ScrollbarSize"                  , 9)
@@ -157,7 +162,7 @@ end
 
 function CPStyle.setThemeEnd()
 	CPStyle.styleEnd(2)
-	CPStyle.colorEnd(40)
+	CPStyle.colorEnd(43)
 end
 
 function CPStyle.setFrameThemeBegin()
@@ -445,6 +450,41 @@ end
 function CPStyle.fileExists(filename)
    local f=io.open(filename,"r")
    if (f~=nil) then io.close(f) return true else return false end
+end
+
+CPStyle.Input = { enable = false }
+
+function CPStyle.Input:Enable(state)
+	if state == nil then
+		self.enable = not self.enbale
+	else
+		self.enable = state
+	end
+end
+
+function CPStyle.Input:Register()
+	if self.enable then
+		CPS.colorBegin("WindowBg", theme.Hidden)
+		CPS.colorBegin("FrameBg", theme.Hidden)
+		CPS.colorBegin("Text", theme.Hidden)
+		CPS.colorBegin("NavHighlight", theme.Hidden)
+		CPS.colorBegin("Border", theme.Hidden)
+		ImGui.Begin("##CPStyle.Input", ImGuiWindowFlags.NoTitleBar | ImGuiWindowFlags.NoResize)
+		ImGui.SetKeyboardFocusHere()
+		self.keypress, self.pressed = ImGui.InputText("##keyboardinput", "", 100)
+		if self.pressed then ImGui.SetKeyboardFocusHere() end
+		ImGui.InputText("##dummy", "", 100)
+		ImGui.End()
+		CPS.colorEnd(5)
+	end
+end
+
+function CPStyle.Input:GetKeyPress()
+	if self.keypress == "" then
+		return nil
+	else
+		return self.keypress
+	end
 end
 
 return CPStyle
