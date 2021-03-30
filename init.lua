@@ -51,6 +51,10 @@ registerForEvent("onDraw", function()
   CPS.setThemeEnd()
 end)
 
-registerHotkey("overlay", "Open Advanced Settings", function()
-  draw = not draw
+registerForEvent("onOverlayOpen", function()
+		draw = true
+end)
+
+registerForEvent("onOverlayClose", function()
+		draw = false
 end)
