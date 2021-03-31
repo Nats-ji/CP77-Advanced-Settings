@@ -17,8 +17,8 @@
 -- along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 registerForEvent("onInit", function()
-  CPS = require("CPStyling")
   UISystem = require("systems/UISystem")
+  CPS = UISystem.CPS
   ConfigSystem = require("systems/configsystem")
   ConfigSystem:Init()
   draw = false
@@ -30,7 +30,7 @@ registerForEvent("onUpdate", function()
 end)
 
 registerForEvent("onDraw", function()
-  CPS.setThemeBegin()
+  CPS:setThemeBegin()
   if draw then
     ImGui.SetNextWindowSize(500, 750, ImGuiCond.FirstUseEver)
     ImGui.SetNextWindowPos((wWidth-500)*0.5, (wHeight-750)*0.5, ImGuiCond.FirstUseEver)
@@ -39,16 +39,16 @@ registerForEvent("onDraw", function()
     UISystem.DrawOptions(ConfigSystem)
     ImGui.EndChild()
     ImGui.Spacing()
-    if CPS.CPButton("Save", ImGui.CalcTextSize("Save")+20, ImGui.GetFontSize()+10) then
+    if CPS:CPButton("Save", ImGui.CalcTextSize("Save")+20, ImGui.GetFontSize()+10) then
       ConfigSystem:Save()
     end
     ImGui.SameLine()
-    if CPS.CPButton("Default", ImGui.CalcTextSize("Default")+20, ImGui.GetFontSize()+10) then
+    if CPS:CPButton("Default", ImGui.CalcTextSize("Default")+20, ImGui.GetFontSize()+10) then
       ConfigSystem:ResetToDefaults()
     end
     ImGui.End()
   end
-  CPS.setThemeEnd()
+  CPS:setThemeEnd()
 end)
 
 registerForEvent("onOverlayOpen", function()
