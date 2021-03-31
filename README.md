@@ -10,7 +10,8 @@
 
 ## Install
 1. Install the latest version of Cyber Engine Tweaks
-2. Download and unzip, then copy `advanced_settings` folder to `Cyberpunk 2077\bin\x64\plugins\cyber_engine_tweaks\mods\`
+2. Install the latest version of [CPStyling](https://www.nexusmods.com/cyberpunk2077/mods/1718/)
+3. Download and unzip, then copy `advanced_settings` folder to `Cyberpunk 2077\bin\x64\plugins\cyber_engine_tweaks\mods\`
 
 ## Usage
 1. Bind a hotkey in Cyber Engine Tweaks
