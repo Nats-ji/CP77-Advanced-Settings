@@ -13,8 +13,7 @@ jobs:
       - name: Copy files
         run: |
           mkdir -p ./build/tmp/bin/x64/plugins/cyber_engine_tweaks/mods/ ./build/release/
-          rsync -a ./ ./build/tmp/bin/x64/plugins/cyber_engine_tweaks/mods/advanced_settings/ --exclude={.git/,build/,.gitignore,.github/,README.md,cet-patch/}
-          cp ./cet-patch/cyber_engine_tweaks.asi ./build/tmp/bin/x64/plugins/cyber_engine_tweaks.asi
+          rsync -a ./ ./build/tmp/bin/x64/plugins/cyber_engine_tweaks/mods/advanced_settings/ --exclude={.git/,build/,.gitignore,.github/,README.md}
       - name: Zip Release
         uses: TheDoctor0/zip-release@0.4.1
         with:
