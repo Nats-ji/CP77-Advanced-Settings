@@ -27,8 +27,10 @@ function UISystem.DrawOptions(ConfigSystem)
   ImGui.BeginGroup()
   ImGui.PushItemWidth(150)
   for _, pk in ipairs(ConfigSystem.keys.parent) do
-    if ImGui.CollapsingHeader(pk) then
+    if CPS:CPCollapsingHeader(pk) then
       for i, k in ipairs(ConfigSystem.keys.child[pk]) do
+        ImGui.Spacing()
+        ImGui.Indent(ImGui.GetFontSize()/2)
         local label = k:gsub("_","/")
         if ConfigSystem.options[pk][k].unsaved then
           CPS.colorBegin("Text", color.yellow)
@@ -45,8 +47,10 @@ function UISystem.DrawOptions(ConfigSystem)
         if ConfigSystem.options[pk][k].unsaved then
           CPS.colorEnd(1)
         end
+        ImGui.Unindent(ImGui.GetFontSize()/2)
       end
     end
+    ImGui.Spacing()
   end
   ImGui.PopItemWidth()
   ImGui.EndGroup()
